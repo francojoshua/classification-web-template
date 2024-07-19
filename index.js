@@ -15,15 +15,8 @@
  * =============================================================================
  */
 const CLASSES_NAMES = {
-  0: 'apple',
-  1: 'avocado',
-  2: 'banana',
-  3: 'carrot',
-  4: 'lettuce',
-  5: 'onion',
-  6: 'pepper',
-  7: 'potato',
-  8: 'tomato',
+  0: 'benign',
+  1: 'malignant'
  }
 
 const MOBILENET_MODEL_PATH =
@@ -31,7 +24,7 @@ const MOBILENET_MODEL_PATH =
     'model_tfjs';
 
 const IMAGE_SIZE = 128;
-const TOPK_PREDICTIONS = 3;
+const TOPK_PREDICTIONS = 1;
 
 let mobilenet;
 const mobilenetDemo = async () => {
@@ -79,7 +72,7 @@ async function predict(imgElement) {
     // tf.browser.fromPixels() returns a Tensor from an image element.
     const img = tf.cast(tf.browser.fromPixels(imgElement), 'float32');
 
-    const offset = tf.scalar(127.5);
+    // const offset = tf.scalar(127.5);
     // Normalize the image from [0, 255] to [-1, 1].X
     // const normalized = img.sub(offset).div(offset);
     const normalized = img;
